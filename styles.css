@@ -1,94 +1,539 @@
+:root {
+    color-scheme: light;
+    --bg: #eaf1fb;
+    --bg-accent: rgba(173, 232, 214, 0.72);
+    --bg-secondary: rgba(202, 226, 252, 0.9);
+    --panel: rgba(255, 255, 255, 0.74);
+    --panel-strong: #ffffff;
+    --panel-muted: rgba(240, 248, 255, 0.9);
+    --text: #12203d;
+    --muted: #5e6f8b;
+    --accent: #58c39e;
+    --accent-strong: #2e9a76;
+    --line: rgba(18, 32, 61, 0.09);
+    --shadow: 0 24px 70px rgba(92, 115, 155, 0.18);
+    --chip: rgba(88, 195, 158, 0.14);
+    --metric: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(227, 245, 238, 0.95));
+}
 
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+body[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #081120;
+    --bg-accent: rgba(22, 92, 82, 0.32);
+    --bg-secondary: rgba(15, 37, 66, 0.92);
+    --panel: rgba(10, 22, 40, 0.82);
+    --panel-strong: rgba(12, 27, 47, 0.95);
+    --panel-muted: rgba(14, 33, 58, 0.94);
+    --text: #e8f0ff;
+    --muted: #93a7c6;
+    --accent: #6ed4b1;
+    --accent-strong: #9de7cb;
+    --line: rgba(170, 198, 231, 0.16);
+    --shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
+    --chip: rgba(110, 212, 177, 0.14);
+    --metric: linear-gradient(135deg, rgba(17, 37, 63, 0.94), rgba(14, 55, 55, 0.9));
+}
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+* {
+    box-sizing: border-box;
+}
 
-        h1, h2, h3 {
-            color: #333;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #0077cc; /* Professional blue */
-            padding-bottom: 5px;
-        }
+body {
+    margin: 0;
+    font-family: "Manrope", "Segoe UI", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 28%),
+        radial-gradient(circle at 85% 12%, var(--bg-accent) 0%, rgba(173, 232, 214, 0) 28%),
+        linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg) 45%, #f8fbff 100%);
+    min-height: 100vh;
+    line-height: 1.65;
+    transition: background 240ms ease, color 240ms ease;
+}
 
-        h2 {
-            font-size: 1.8em;
-            margin-top: 20px;
-        }
-        
-        h3 {
-            font-size: 1.4em;
-            margin-top: 15px;
-            color: #0077cc;
-        }
+body[data-theme="dark"] {
+    background:
+        radial-gradient(circle at top left, rgba(96, 172, 255, 0.08) 0%, rgba(96, 172, 255, 0) 30%),
+        radial-gradient(circle at 80% 10%, rgba(110, 212, 177, 0.14) 0%, rgba(110, 212, 177, 0) 24%),
+        linear-gradient(180deg, #0b1730 0%, var(--bg) 48%, #060c18 100%);
+}
 
-        .section {
-            margin-bottom: 30px;
-        }
+.page-shell {
+    padding: 32px 20px 48px;
+}
 
-        .section-header{
-            margin-bottom: 10px;
-        }
+.resume-page {
+    max-width: 1180px;
+    margin: 0 auto;
+}
 
-        .experience-item {
-            margin-bottom: 15px;
-        }
+.card {
+    background: var(--panel);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+}
 
-        .job-title {
-            font-weight: bold;
-        }
+.hero,
+.section-card,
+.project-card,
+.metric-card {
+    border-radius: 28px;
+}
 
-        .company {
-            font-style: italic;
-            text-decoration: underline;
-            font-weight: bold;
-        }
+.hero {
+    padding: 28px;
+    margin-bottom: 24px;
+}
 
-        .date {
-            font-size: 0.9em;
-            color: #666;
-            float: right;
-        }
-        .clearfix::after {
-            content: "";
-            display: table;
-            clear: both;
-        }
+.hero-top,
+.role-header,
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
 
-        .skills-list {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-        }
+.eyebrow,
+.section-label,
+.role-company {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--accent-strong);
+}
 
-        .skills-list li {
-            background-color: #e0e0e0;
-            padding: 5px 10px;
-            margin: 5px;
-            border-radius: 5px;
-        }
+.hero-kicker {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
 
-        a {
-          color: #0077cc;
-          text-decoration: none;
-        }
+.theme-toggle {
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--text);
+    border-radius: 999px;
+    padding: 10px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
 
-        a:hover {
-          text-decoration: underline;
-        }
+body[data-theme="dark"] .theme-toggle {
+    background: rgba(15, 34, 58, 0.88);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-1px);
+    border-color: rgba(88, 195, 158, 0.4);
+}
+
+.theme-toggle svg,
+.section-icon svg,
+.contact-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.95fr);
+    gap: 28px;
+    margin-top: 28px;
+    align-items: stretch;
+}
+
+.hero-copy h1,
+.section-heading h2,
+.role-item h3,
+.project-card h3 {
+    margin: 0;
+    font-family: "Space Grotesk", "Segoe UI", sans-serif;
+    letter-spacing: -0.03em;
+}
+
+.hero-copy h1 {
+    font-size: clamp(3rem, 7vw, 4.9rem);
+    line-height: 0.94;
+    margin-bottom: 18px;
+}
+
+.hero-title {
+    margin: 0;
+    font-size: 1.18rem;
+    font-weight: 700;
+    max-width: 58ch;
+}
+
+.hero-summary {
+    margin: 18px 0 0;
+    max-width: 68ch;
+    color: var(--muted);
+}
+
+.hero-panel {
+    background: var(--panel-muted);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 22px;
+    display: grid;
+    gap: 16px;
+}
+
+.contact-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 14px;
+    align-items: start;
+}
+
+.contact-icon,
+.section-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: var(--chip);
+    color: var(--accent-strong);
+    flex-shrink: 0;
+}
+
+.contact-label {
+    margin: 0 0 3px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.contact-value {
+    margin: 0;
+    font-size: 0.98rem;
+    font-weight: 600;
+}
+
+.placeholder {
+    color: var(--muted);
+    border-bottom: 1px dashed rgba(88, 195, 158, 0.5);
+    display: inline-block;
+    padding-bottom: 2px;
+}
+
+.chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.chip-row.dense {
+    margin-top: 0;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 14px;
+    border-radius: 999px;
+    background: var(--chip);
+    border: 1px solid rgba(88, 195, 158, 0.18);
+    font-size: 0.93rem;
+    font-weight: 700;
+}
+
+.metrics-grid,
+.content-grid,
+.project-grid {
+    display: grid;
+    gap: 18px;
+}
+
+.metrics-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 24px;
+}
+
+.metric-card {
+    padding: 18px;
+    background: var(--metric);
+    border: 1px solid var(--line);
+}
+
+.metric-value {
+    margin: 0;
+    font-family: "Space Grotesk", "Segoe UI", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.metric-label {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.content-grid {
+    grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.95fr);
+    align-items: start;
+}
+
+.main-column,
+.side-column {
+    display: grid;
+    gap: 18px;
+}
+
+.section-card {
+    padding: 24px;
+}
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    margin-top: 4px;
+    font-size: 1.65rem;
+}
+
+.role-item + .role-item {
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+    margin-top: 22px;
+}
+
+.role-item h3,
+.project-card h3 {
+    font-size: 1.35rem;
+}
+
+.role-summary,
+.interest-copy,
+.detail-block p:last-child,
+.stack-line {
+    margin: 8px 0 0;
+    color: var(--muted);
+}
+
+.date-pill {
+    margin: 0;
+    white-space: nowrap;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--chip);
+    border: 1px solid rgba(88, 195, 158, 0.18);
+    font-size: 0.88rem;
+    font-weight: 800;
+}
+
+.impact-list {
+    margin: 16px 0 0;
+    padding-left: 20px;
+}
+
+.impact-list li + li {
+    margin-top: 8px;
+}
+
+.impact-list li::marker {
+    color: var(--accent-strong);
+}
+
+.compact-list {
+    margin-top: 12px;
+}
+
+.stack-line {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-card {
+    padding: 20px;
+    background: var(--panel-muted);
+    border: 1px solid var(--line);
+}
+
+.project-card p {
+    margin: 10px 0 0;
+    color: var(--muted);
+}
+
+.detail-block + .detail-block {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+}
+
+.detail-title {
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.detail-block p:last-child {
+    margin-top: 6px;
+}
+
+.interest-copy {
+    margin-top: 0;
+}
+
+@media (max-width: 1080px) {
+    .metrics-grid,
+    .content-grid,
+    .project-grid,
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-copy h1 {
+        max-width: 10ch;
+    }
+}
+
+@media (max-width: 720px) {
+    .page-shell {
+        padding: 16px 12px 32px;
+    }
+
+    .hero,
+    .section-card {
+        padding: 18px;
+        border-radius: 22px;
+    }
+
+    .hero-top,
+    .role-header,
+    .section-heading {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .theme-toggle {
+        align-self: flex-start;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(2.6rem, 18vw, 3.6rem);
+    }
+
+    .contact-item {
+        grid-template-columns: 36px 1fr;
+        gap: 12px;
+    }
+}
+
+@media print {
+    @page {
+        size: A4;
+        margin: 0.55in;
+    }
+
+    :root,
+    body[data-theme="dark"] {
+        color-scheme: light;
+        --bg: #ffffff;
+        --bg-accent: transparent;
+        --bg-secondary: #ffffff;
+        --panel: #ffffff;
+        --panel-strong: #ffffff;
+        --panel-muted: #ffffff;
+        --text: #111111;
+        --muted: #444444;
+        --accent: #2e9a76;
+        --accent-strong: #2e9a76;
+        --line: rgba(0, 0, 0, 0.12);
+        --shadow: none;
+        --chip: rgba(46, 154, 118, 0.08);
+        --metric: #ffffff;
+    }
+
+    * {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    body {
+        background: #ffffff;
+        font-size: 11pt;
+    }
+
+    .page-shell {
+        padding: 0;
+    }
+
+    .theme-toggle {
+        display: none;
+    }
+
+    .card,
+    .project-card,
+    .metric-card,
+    .hero-panel {
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: none;
+        backdrop-filter: none;
+        background: #ffffff;
+    }
+
+    .hero {
+        margin-bottom: 12pt;
+    }
+
+    .hero-copy h1 {
+        font-size: 28pt;
+    }
+
+    .content-grid {
+        grid-template-columns: 1.45fr 0.95fr;
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero-grid,
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero,
+    .section-card,
+    .project-card,
+    .metric-card {
+        border-radius: 16px;
+    }
+
+    .role-item,
+    .section-card,
+    .project-card,
+    .metric-card,
+    .hero-panel {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
